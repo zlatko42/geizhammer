@@ -3,4 +3,9 @@
     <string name="button_anmelden">Anmelden</string>
     <string name="button_weiter">Weiter</string>
     <string name="text_welcome">Willkommen bei Geizhammer</string>
+    <string name="text_user_email">Benutzer/Email</string>
+    <string name="text_password">Kennwort</string>
+    <string name="text_anmelden">Anmelden</string>
+    <string name="text_kein_konto">Noch kein Konto?</string>
+    <string name="text_registrieren">Registrieren</string>
 </resources>
