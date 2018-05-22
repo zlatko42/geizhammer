@@ -8,4 +8,6 @@
     <string name="text_anmelden">Anmelden</string>
     <string name="text_kein_konto">Noch kein Konto?</string>
     <string name="text_registrieren">Registrieren</string>
+    <string name="text_suche">Produkt suchen</string>
+    <string name="text_einkaufsliste">Einkaufsliste</string>
 </resources>
