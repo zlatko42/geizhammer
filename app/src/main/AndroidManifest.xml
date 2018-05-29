@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"
-            android:parentActivityName=".Start"/>
+        <activity
+            android:name=".Login"
+            android:parentActivityName=".Start" />
         <activity android:name=".Search" />
-        <activity android:name=".Main"></activity>
+        <activity android:name=".Main" />
     </application>
 
 </manifest>
