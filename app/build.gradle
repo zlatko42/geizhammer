@@ -19,7 +19,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation files('src/main/java/mssql-jdbc-6.4.0.jre8/mssql-jdbc-6.4.0.jre8.jar')
+    implementation files('src/main/java/mssql-jdbc-6.4.0.jre8/mssql-jdbc-6.4.0.jre8.jar')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
