@@ -1,5 +1,6 @@
 package db;
 
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -17,9 +18,34 @@ public class Queries {
    /*String url = String.format(
            "jdbc:sqlserver://geizhammer.database.windows.net:1433;database=geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
 */
-
+    //Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
     String url = String.format(
-            "jdbc:sqlserver://geizhammer.database.windows.net:1433;database=geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req");
+            "jdbc:jtds:sqlserver://geizhammer.database.windows.net:1433/geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req");
+
+
+    public ResultSet execQuery(String sql)
+    {
+        Connection connection = null;
+        ResultSet rs = null;
+
+        try {
+
+            connection = DriverManager.getConnection(url);
+          //  System.out.println("con ok");
+
+            Statement statement = connection.createStatement();
+           // System.out.println("statement ok");
+            rs = statement.executeQuery(sql);
+
+            //System.out.println("result set received");
+           // connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
 
 
     public void createUserinDB(Benutzer b) {
@@ -27,14 +53,15 @@ public class Queries {
         Connection connection = null;
 
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
             connection = DriverManager.getConnection(url);
 
             // Create and execute a SELECT SQL statement.
-            String sql = "insert into tbl_Benutzer (BenID, Vorname, Nachname, Email, FKstand) values ('"+b.getBenID()+"', '"+b.getVorname()+"', '"+b.getNachname()+"', '"+b.getEmail()+"', '"+b.getFKstand()+"');";
+            String sql = "insert into tbl_Benutzer (BenID, Vorname, Nachname, Email, FKstand) values ('" + b.getBenID() + "', '" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "');";
 
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(sql)) {
+
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
 
                 while (resultSet.next()) {
 
@@ -42,26 +69,26 @@ public class Queries {
 
                 }
                 connection.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
 
-    public Benutzer getUserByEmail(String mail) {
+        public Benutzer getUserByEmail (String mail){
 
-        Connection connection = null;
-        Benutzer b=null;
+            Connection connection;
+            Benutzer b = null;
 
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url);
+            try {
+                connection = DriverManager.getConnection(url);
 
-            // Create and execute a SELECT SQL statement.
-            String selectSql = "SELECT * FROM tbl_Benutzer where Email='"+mail+"'";
+                // Create and execute a SELECT SQL statement.
+                String selectSql = "select * from tbl_Benutzer where Email='" + mail + "'";
 
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(selectSql)) {
+
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(selectSql);
 
                 while (resultSet.next()) {
 
@@ -77,13 +104,13 @@ public class Queries {
 
                 }
                 connection.close();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            return b;
+
         }
-        return b;
     }
-
-
-
-}

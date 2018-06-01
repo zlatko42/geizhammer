@@ -3,19 +3,44 @@ package db;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import model.Benutzer;
 
 public class connect_db {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         //Benutzer b = new Benutzer(17, "Testmongo 1", "McTestFace", "test@testitest.test", 1);
+
+        String selectSql = "select * from tbl_Benutzer where Email='test@testitest.test'";
+
+
         Queries q = new Queries();
+        ResultSet resultSet = q.execQuery(selectSql);
+        //System.out.println("resultset defined");
+        //       b = q.getUserByEmail("test@testitest.test");	//++++WORKS
+      //  System.out.println(b.toString());
 
         Benutzer b = null;
-        b = q.getUserByEmail("test@testitest.test");	//++++WORKS
-        System.out.println(b.toString());
 
+
+
+
+        while (resultSet.next()) {
+
+            int id = Integer.parseInt(resultSet.getString("BenID"));
+            String vorname = resultSet.getString("Vorname");
+            String nachname = resultSet.getString("Nachname");
+            String email = resultSet.getString("Email");
+            int fkstand = Integer.parseInt(resultSet.getString("FKstand"));
+
+
+            b = new Benutzer(id, vorname, nachname, email, fkstand);
+        }
+
+        //System.out.println(b.toString()+"      ------>    rs correct!");
 
         //ProdukteList produkte = new ProdukteList();
 

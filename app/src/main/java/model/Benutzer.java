@@ -19,6 +19,7 @@ public class Benutzer {
     private String vorname;
     private String nachname;
     private String email;
+    private String password;
     private int FKstand;
 
     public int getBenID() {
@@ -67,4 +68,11 @@ public class Benutzer {
     }
 
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
