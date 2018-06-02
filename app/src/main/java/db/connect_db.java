@@ -1,13 +1,12 @@
 package db;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import model.Benutzer;
 
 public class connect_db {
 
     public static void main(String[] args) throws SQLException {
+
+        /*
 
         //Benutzer b = new Benutzer(17, "Testmongo 1", "McTestFace", "test@testitest.test", 1);
 
@@ -44,8 +43,9 @@ public class connect_db {
 
         //produkte.printListTest();
 
-        //q.createUserinDB(b); ++++WORKS
+        //q.createUserinDB(b); ++++WORKS  */
     }
+
 
 }
 

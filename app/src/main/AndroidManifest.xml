@@ -26,6 +26,9 @@
         <activity
             android:name=".Register"
             android:parentActivityName=".Login" />
+        <activity
+            android:name=".Delete"
+            android:parentActivityName=".Login" />
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ public class Queries {
             "jdbc:jtds:sqlserver://geizhammer.database.windows.net:1433/geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req");
 
 
-    public ResultSet execQuery(String sql) {
+   /* public ResultSet execQuery(String sql) {
         Connection connection = null;
         ResultSet rs = null;
 
@@ -39,6 +39,35 @@ public class Queries {
         }
 
         return rs;
+    }*/
+
+    public void deleteUserinDB(Benutzer b) {
+
+        Connection connection = null;
+
+        try {
+
+            connection = DriverManager.getConnection(url);
+
+            // Create and execute a SELECT SQL statement.
+            String sql = "delete from tbl_Benutzer where Email = '" + b.getEmail() + "'";
+            //String sql = "insert into tbl_Benutzer (Vorname, Nachname, Email, FKstand) values ('" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
+
+
+            Statement statement = connection.createStatement();
+
+
+            if (statement.executeUpdate(sql) > 0) {
+
+                System.out.println("User deleted!");
+
+            }
+
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
