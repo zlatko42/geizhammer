@@ -14,7 +14,7 @@ public class Start extends AppCompatActivity {
     }
 
     // method for login button
-    public void buttonLogin(View view){
+    public void buttonLogin(View view) {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
 

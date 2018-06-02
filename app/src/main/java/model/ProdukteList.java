@@ -24,11 +24,9 @@ public class ProdukteList {
         return produkte;
     }
 
-    public void printListTest()
-    {
+    public void printListTest() {
         System.out.println("PID  Bezeichnung  Packungsgr  PackungsEH  Kategorie  Preis  Baumarkt");
-        for(Produkt p:produkte)
-        {
+        for (Produkt p : produkte) {
             System.out.println(p.getPid() + "     " + p.getBezeichnung() + "       " + p.getPackungsgr() + "   " + p.getPackungsart() + "   " + p.getKategorie()
                     + "   " + p.getPreis() + "   " + p.getBaumarkt());
         }
@@ -77,7 +75,7 @@ public class ProdukteList {
             connection = DriverManager.getConnection(url);
 
             // Create and execute a SELECT SQL statement.
-            String selectSql = "SELECT * FROM tbl_Produkte where bezeichnung like '"+search+"%'";
+            String selectSql = "SELECT * FROM tbl_Produkte where bezeichnung like '" + search + "%'";
 
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(selectSql)) {
@@ -105,8 +103,7 @@ public class ProdukteList {
     }
 
 
-    public void pushSQLStatement(String sql)
-    {
+    public void pushSQLStatement(String sql) {
 
     }
 

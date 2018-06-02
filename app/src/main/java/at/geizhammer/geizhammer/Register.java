@@ -11,58 +11,56 @@ import android.widget.Toast;
 import db.Queries;
 import model.Benutzer;
 
-public class Login extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
 
     EditText ed_username;
     EditText ed_password;
+    EditText ed_password2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
 
 
-    // method for login button
-    public void login(View v) {
+    // method for register button
+    public void register(View v) {
 
         ed_username = (EditText) findViewById(R.id.username);
-        // ed_password = (EditText) findViewById(R.id.password);
+        ed_password = (EditText) findViewById(R.id.password);
+        ed_password2 = (EditText) findViewById(R.id.password2);
 
-        final String usernameT = ed_username.getText().toString();
-        System.out.println(" -------- Username Field: " + usernameT);
-
-        Benutzer b;
+        String usernameT = ed_username.getText().toString();
+        String passwordT = ed_password.getText().toString();
+        String password2T = ed_password2.getText().toString();
 
         Queries q = new Queries();
-        b = q.getUserByEmail(usernameT);
+        Benutzer b = q.getUserByEmail(usernameT);
 
-        if (b != null) {
-            String text = "Login successfull: " + b.getEmail();
+        if (b == null && passwordT.equals(password2T)) {
+            String text = "Register successfull: " + usernameT;
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();
 
+            q.createUserinDB(new Benutzer((int) (Math.random() * 100), "Testhansi", "Nachname", usernameT, 1));
+
+            Intent intent = new Intent(this, Start.class);
+            startActivity(intent);
+
 
         } else {
 
-            String text = "Login failed!!";
+            String text = "Register failed, check Passwords";
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();
 
         }
-
-
-    }
-
-    // method for register button
-    public void register(View v) {
-        Intent intent = new Intent(this, Register.class);
-        startActivity(intent);
 
     }
 

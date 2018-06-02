@@ -1,8 +1,5 @@
 package db;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,11 +18,9 @@ public class connect_db {
         ResultSet resultSet = q.execQuery(selectSql);
         //System.out.println("resultset defined");
         //       b = q.getUserByEmail("test@testitest.test");	//++++WORKS
-      //  System.out.println(b.toString());
+        //  System.out.println(b.toString());
 
         Benutzer b = null;
-
-
 
 
         while (resultSet.next()) {

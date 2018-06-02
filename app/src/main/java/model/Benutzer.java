@@ -22,6 +22,14 @@ public class Benutzer {
     private String password;
     private int FKstand;
 
+    public Benutzer(String vorname, String nachname, String email, int FKstand) {
+        super();
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.email = email;
+        this.FKstand = FKstand;
+    }
+
     public int getBenID() {
         return benID;
     }
@@ -59,12 +67,11 @@ public class Benutzer {
     }
 
     public void setFKstand(int FKstand) {
-        this.FKstand=FKstand;
+        this.FKstand = FKstand;
     }
 
-    public String toString()
-    {
-        return benID+"  "+vorname+"  "+nachname+"  "+email+"  "+FKstand;
+    public String toString() {
+        return benID + "  " + vorname + "  " + nachname + "  " + email + "  " + FKstand;
     }
 
 
