@@ -9,8 +9,11 @@ import java.util.LinkedList;
 public class ProdukteList {
 
     LinkedList<Produkt> produkte = new LinkedList<Produkt>();
+
+    /*String url = String.format(
+            "jdbc:sqlserver://geizhammer.database.windows.net:1433;database=geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");*/
     String url = String.format(
-            "jdbc:sqlserver://geizhammer.database.windows.net:1433;database=geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+            "jdbc:jtds:sqlserver://geizhammer.database.windows.net:1433/geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req");
 
     public void add(Produkt p) {
         produkte.add(p);
@@ -30,6 +33,8 @@ public class ProdukteList {
             System.out.println(p.getPid() + "     " + p.getBezeichnung() + "       " + p.getPackungsgr() + "   " + p.getPackungsart() + "   " + p.getKategorie()
                     + "   " + p.getPreis() + "   " + p.getBaumarkt());
         }
+
+
     }
 
     public LinkedList<Produkt> getProdukteByKategorie(int kategorie) {
@@ -42,8 +47,8 @@ public class ProdukteList {
             // Create and execute a SELECT SQL statement.
             String selectSql = "SELECT * " + "FROM tbl_Produkte where FKCat=" + kategorie;
 
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(selectSql)) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectSql);
 
                 while (resultSet.next()) {
                     int id = Integer.parseInt(resultSet.getString("PID"));
@@ -60,8 +65,7 @@ public class ProdukteList {
 
                 }
                 connection.close();
-            }
-        } catch (Exception e) {
+            } catch (Exception e) {
             e.printStackTrace();
         }
         return produkte;
@@ -75,10 +79,10 @@ public class ProdukteList {
             connection = DriverManager.getConnection(url);
 
             // Create and execute a SELECT SQL statement.
-            String selectSql = "SELECT * FROM tbl_Produkte where bezeichnung like '" + search + "%'";
+            String selectSql = "SELECT * FROM tbl_Produkte where Bezeichnung like '" + search + "%'";
 
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(selectSql)) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectSql);
 
                 while (resultSet.next()) {
                     int id = Integer.parseInt(resultSet.getString("PID"));
@@ -90,12 +94,13 @@ public class ProdukteList {
                     int baumarkt = Integer.parseInt(resultSet.getString("FKbaum"));
 
                     Produkt p = new Produkt(id, bezeichnung, packungsgr, packungsart, kat, preis, baumarkt);
+                    System.out.println("+++++++++++++++++++++++++++++++++++++ " + p.toString());
                     produkte.add(p);
 
 
                 }
                 connection.close();
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,5 +111,6 @@ public class ProdukteList {
     public void pushSQLStatement(String sql) {
 
     }
+
 
 }

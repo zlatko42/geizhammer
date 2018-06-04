@@ -46,25 +46,15 @@ public class Queries {
         Connection connection = null;
 
         try {
-
             connection = DriverManager.getConnection(url);
-
             // Create and execute a SELECT SQL statement.
             String sql = "delete from tbl_Benutzer where Email = '" + b.getEmail() + "'";
             //String sql = "insert into tbl_Benutzer (Vorname, Nachname, Email, FKstand) values ('" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
-
-
             Statement statement = connection.createStatement();
-
-
             if (statement.executeUpdate(sql) > 0) {
-
                 System.out.println("User deleted!");
-
             }
-
             connection.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,23 +68,14 @@ public class Queries {
         try {
 
             connection = DriverManager.getConnection(url);
-
             // Create and execute a SELECT SQL statement.
             String sql = "insert into tbl_Benutzer (BenID, Vorname, Nachname, Email, FKstand) values ('" + b.getBenID() + "', '" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
             //String sql = "insert into tbl_Benutzer (Vorname, Nachname, Email, FKstand) values ('" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
-
-
             Statement statement = connection.createStatement();
-
-
             if (statement.executeUpdate(sql) > 0) {
-
                 System.out.println("User created!");
-
             }
-
             connection.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,38 +85,24 @@ public class Queries {
 
         Connection connection;
         Benutzer b = null;
-
         try {
             connection = DriverManager.getConnection(url);
-
             // Create and execute a SELECT SQL statement.
             String selectSql = "select * from tbl_Benutzer where Email='" + mail + "'";
-
-
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSql);
-
             while (resultSet.next()) {
-
                 int id = Integer.parseInt(resultSet.getString("BenID"));
                 String vorname = resultSet.getString("Vorname");
                 String nachname = resultSet.getString("Nachname");
                 String email = resultSet.getString("Email");
                 int fkstand = Integer.parseInt(resultSet.getString("FKstand"));
-
-
                 b = new Benutzer(id, vorname, nachname, email, fkstand);
-
-
             }
             connection.close();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return b;
-
     }
 }

@@ -82,7 +82,7 @@
         android:onClick="delete"
         android:text="Konto löschen"
         android:textAllCaps="false"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
