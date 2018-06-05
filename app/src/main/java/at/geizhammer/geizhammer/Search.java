@@ -36,12 +36,13 @@ public class Search extends AppCompatActivity {
 
         ProdukteList list = new ProdukteList();
         LinkedList output = list.getProdukteByName(input);
-        list.printListTest();
+
+        //list.printListTest();
 
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_list_item_1, output);
+                android.R.layout.simple_list_item_1, list.listToString());
 
         lv.setAdapter(arrayAdapter);
 

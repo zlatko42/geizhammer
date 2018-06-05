@@ -78,4 +78,8 @@ public class Produkt {
         this.baumarkt = baumarkt;
     }
 
+    @Override
+    public String toString() {
+        return bezeichnung;
+    }
 }

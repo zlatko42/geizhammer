@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ProdukteList {
@@ -35,6 +36,19 @@ public class ProdukteList {
         }
 
 
+    }
+
+    public ArrayList listToString() {
+
+        ArrayList list = new ArrayList();
+
+        for (Produkt p : produkte) {
+
+            list.add(p.toString());
+
+        }
+
+        return list;
     }
 
     public LinkedList<Produkt> getProdukteByKategorie(int kategorie) {
