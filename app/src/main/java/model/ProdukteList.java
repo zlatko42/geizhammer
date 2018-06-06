@@ -28,6 +28,10 @@ public class ProdukteList {
         return produkte;
     }
 
+    public Produkt getProduktAt(int index) {
+        return produkte.get(index);
+    }
+
     public void printListTest() {
         System.out.println("PID  Bezeichnung  Packungsgr  PackungsEH  Kategorie  Preis  Baumarkt");
         for (Produkt p : produkte) {
