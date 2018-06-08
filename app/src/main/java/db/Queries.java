@@ -46,6 +46,7 @@ public class Queries {
         Connection connection = null;
 
         try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection(url);
             // Create and execute a SELECT SQL statement.
             String sql = "delete from tbl_Benutzer where Email = '" + b.getEmail() + "'";
@@ -66,7 +67,7 @@ public class Queries {
         Connection connection = null;
 
         try {
-
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection(url);
             // Create and execute a SELECT SQL statement.
             String sql = "insert into tbl_Benutzer (BenID, Vorname, Nachname, Email, FKstand) values ('" + b.getBenID() + "', '" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
@@ -86,6 +87,7 @@ public class Queries {
         Connection connection;
         Benutzer b = null;
         try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection(url);
             // Create and execute a SELECT SQL statement.
             String selectSql = "select * from tbl_Benutzer where Email='" + mail + "'";

@@ -16,6 +16,7 @@ public class ProdukteList {
     String url = String.format(
             "jdbc:jtds:sqlserver://geizhammer.database.windows.net:1433/geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req");
 
+
     public void add(Produkt p) {
         produkte.add(p);
     }
@@ -60,6 +61,7 @@ public class ProdukteList {
         Connection connection = null;
 
         try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection(url);
 
             // Create and execute a SELECT SQL statement.
@@ -94,6 +96,7 @@ public class ProdukteList {
         Connection connection = null;
 
         try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection(url);
 
             // Create and execute a SELECT SQL statement.
