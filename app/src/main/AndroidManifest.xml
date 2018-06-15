@@ -3,6 +3,8 @@
     package="at.geizhammer.geizhammer">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +24,7 @@
             android:name=".Login"
             android:parentActivityName=".Start" />
         <activity android:name=".Search" />
+        <activity android:name=".Shoppinglist" />
         <activity android:name=".Main" />
         <activity
             android:name=".Register"

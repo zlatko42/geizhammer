@@ -14,6 +14,8 @@ import model.Benutzer;
 public class Login extends AppCompatActivity {
 
 
+    public static int loggedIn = 0;
+
     EditText ed_username;
     EditText ed_password;
 
@@ -45,6 +47,8 @@ public class Login extends AppCompatActivity {
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();
+            
+            loggedIn = b.getBenID();
 
             Intent intent = new Intent(this, Main.class);
             startActivity(intent);

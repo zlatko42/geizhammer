@@ -33,6 +33,10 @@ public class ProdukteList {
         return produkte.get(index);
     }
 
+    public void removeProduktAt(int index) {
+        produkte.remove(index);
+    }
+
     public void printListTest() {
         System.out.println("PID  Bezeichnung  Packungsgr  PackungsEH  Kategorie  Preis  Baumarkt");
         for (Produkt p : produkte) {

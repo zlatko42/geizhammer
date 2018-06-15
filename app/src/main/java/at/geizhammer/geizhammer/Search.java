@@ -12,6 +12,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.sql.Date;
+
+import model.Einkaufsliste;
 import model.Produkt;
 import model.ProdukteList;
 
@@ -20,7 +23,13 @@ public class Search extends AppCompatActivity {
     AutoCompleteTextView ac_text;
     ListView lv;
     Produkt currentP;
+    public static Einkaufsliste einkaufsliste = new Einkaufsliste(1);
+    ProdukteList list = new ProdukteList();
 
+
+    public Einkaufsliste getEinkaufslisteFromSearch() {
+        return einkaufsliste;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +51,7 @@ public class Search extends AppCompatActivity {
         String input = ac_text.getText().toString();
         System.out.println(input);
 
-        final ProdukteList list = new ProdukteList();
+
         list.getProdukteByName(input);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -76,6 +85,11 @@ public class Search extends AppCompatActivity {
 
         if (item.getTitle() == "Artikel auf die Einkaufsliste setzen") {
             Toast.makeText(this, "Added: " + currentP.toString(), Toast.LENGTH_LONG).show();
+
+            //einkaufsliste.produkte.add(currentP);
+            einkaufsliste.getProdukte().add(currentP);
+            System.out.println("----------------"+einkaufsliste.produkte.getProduktAt(0).toString());
+
 
         }
 

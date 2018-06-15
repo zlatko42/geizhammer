@@ -7,12 +7,24 @@ public class Einkaufsliste {
     private int lid;
     private Date datum;
     private int fKben;
+    public ProdukteList produkte = new ProdukteList();
 
-    public Einkaufsliste(int lid, Date datum, int fKben) {
+
+
+
+    public ProdukteList getProdukte() {
+        return produkte;
+    }
+
+    public void setProdukte(ProdukteList produkte) {
+        this.produkte = produkte;
+    }
+
+
+
+    public Einkaufsliste(int fKben) {
         super();
-        this.lid = lid;
-        this.datum = datum;
-        this.fKben = fKben;
+        this.fKben=fKben;
     }
 
     public int getLid() {

@@ -18,4 +18,9 @@ public class Main extends AppCompatActivity {
         Intent intent = new Intent(this, Search.class);
         startActivity(intent);
     }
+
+    public void to_shoppinglist(View v) {
+        Intent intent = new Intent(this, Shoppinglist.class);
+        startActivity(intent);
+    }
 }
