@@ -5,7 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import at.geizhammer.geizhammer.Search;
 
 public class ProdukteList {
 
@@ -132,10 +137,61 @@ public class ProdukteList {
         return produkte;
     }
 
+    public String calculateBaumarkt()
+    {
+        String solution = "nix";
+        Connection connection = null;
+        int max = 0;
+        int temp = 0;
 
-    public void pushSQLStatement(String sql) {
+        //try {
+           // Class.forName("net.sourceforge.jtds.jdbc.Driver");
+           // connection = DriverManager.getConnection(url);
+            List<Integer> baumarktList = new ArrayList<>();
+            for (Produkt p : Search.searchlist.getProdukte()){baumarktList.add(p.getBaumarkt()); }
+
+
+        System.out.println("Highest occured Baumarkt: "+mostCommon(baumarktList));
+
+
+            // Create and execute a SELECT SQL statement.
+            /*String selectSql = "SELECT * FROM tbl_Produkte where Bezeichnung like '" + search + "%'";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectSql);
+
+            while (resultSet.next()) {
+
+                solution = resultSet.getString(0);
+            }
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        return solution;
+    }
+
+
+    public static <T> T mostCommon(List<T> list) {
+        Map<T, Integer> map = new HashMap<>();
+
+        for (T t : list) {
+            Integer val = map.get(t);
+            map.put(t, val == null ? 1 : val + 1);
+        }
+
+        Map.Entry<T, Integer> max = null;
+
+        for (Map.Entry<T, Integer> e : map.entrySet()) {
+            if (max == null || e.getValue() > max.getValue())
+                max = e;
+        }
+
+        return max.getKey();
+    }
 
     }
 
 
-}
+

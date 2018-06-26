@@ -47,8 +47,9 @@ public class Login extends AppCompatActivity {
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();
-            
+
             loggedIn = b.getBenID();
+            System.out.println(loggedIn);
 
             Intent intent = new Intent(this, Main.class);
             startActivity(intent);

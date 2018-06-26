@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Einkaufsliste {
 
@@ -50,5 +51,11 @@ public class Einkaufsliste {
     public void setFKben(int fKben) {
         this.fKben = fKben;
     }
+
+    public ArrayList listToString() {
+
+        return produkte.listToString();
+    }
+
 
 }

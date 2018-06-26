@@ -24,12 +24,10 @@ public class Search extends AppCompatActivity {
     ListView lv;
     Produkt currentP;
     public static Einkaufsliste einkaufsliste = new Einkaufsliste(1);
+    public static ProdukteList searchlist = new ProdukteList();
     ProdukteList list = new ProdukteList();
 
 
-    public Einkaufsliste getEinkaufslisteFromSearch() {
-        return einkaufsliste;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +42,18 @@ public class Search extends AppCompatActivity {
 
     }
 
+
     // method for bt_search
     public void start_search(final View v) {
 
 
         String input = ac_text.getText().toString();
-        System.out.println(input);
+        System.out.println("  ---  Textinput: "+input);
 
+        if(input.length()>2) {
+            list.clear();
+            list.getProdukteByName(input);
 
-        list.getProdukteByName(input);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
@@ -69,7 +70,10 @@ public class Search extends AppCompatActivity {
 
                 currentP = list.getProduktAt(position);
             }
-        });
+        });}
+        else{
+            Toast.makeText(this, "Suchbegriff zu kurz!", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -86,9 +90,18 @@ public class Search extends AppCompatActivity {
         if (item.getTitle() == "Artikel auf die Einkaufsliste setzen") {
             Toast.makeText(this, "Added: " + currentP.toString(), Toast.LENGTH_LONG).show();
 
-            //einkaufsliste.produkte.add(currentP);
+
             einkaufsliste.getProdukte().add(currentP);
-            System.out.println("----------------"+einkaufsliste.produkte.getProduktAt(0).toString());
+
+            for(Produkt p:list.getProdukte())
+            {
+                if(currentP.getBezeichnung().equals(p.getBezeichnung()))
+                {
+                    searchlist.add(p);
+                    System.out.println("Searchlist: "+p.toString());
+                }
+            }
+            System.out.println("---Einkaufsliste IN: ------------- "+einkaufsliste.produkte.getProduktAt(0).toString());
 
 
         }

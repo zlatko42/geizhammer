@@ -25,6 +25,7 @@
             android:parentActivityName=".Start" />
         <activity android:name=".Search" />
         <activity android:name=".Shoppinglist" />
+        <activity android:name=".CalculationScreen" />
         <activity android:name=".Main" />
         <activity
             android:name=".Register"
