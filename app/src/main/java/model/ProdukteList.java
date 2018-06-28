@@ -5,10 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import at.geizhammer.geizhammer.Search;
 
@@ -54,13 +57,13 @@ public class ProdukteList {
 
     public ArrayList listToString() {
 
-        ArrayList list = new ArrayList();
+        ArrayList<String> list = new ArrayList<>();
 
-        for (Produkt p : produkte) {
+        for (Produkt p : produkte) {list.add(p.toString());}
 
-            list.add(p.toString());
-
-        }
+        Set<String> diffList = new HashSet<>(list);
+        list.clear();
+        list.addAll(diffList);
 
         return list;
     }
@@ -141,34 +144,76 @@ public class ProdukteList {
     {
         String solution = "nix";
         Connection connection = null;
-        int max = 0;
-        int temp = 0;
+        float sum = 0;
+        float tempsum = 0;
+        int tempc = 0;
+        int count = 0;
+        int currentBmkt = 0;
+        int bestBmkt = 0;
 
-        //try {
-           // Class.forName("net.sourceforge.jtds.jdbc.Driver");
-           // connection = DriverManager.getConnection(url);
+        try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            connection = DriverManager.getConnection(url);
+
             List<Integer> baumarktList = new ArrayList<>();
             for (Produkt p : Search.searchlist.getProdukte()){baumarktList.add(p.getBaumarkt()); }
+            System.out.println("######   Searchlistsize: "+baumarktList.size());
 
+            Set<Integer> diffBaumkt = new HashSet<>(baumarktList);
+            baumarktList.clear();
+            baumarktList.addAll(diffBaumkt);
+            Collections.sort(baumarktList);
+            System.out.println("#####   Sorted List.");
 
-        System.out.println("Highest occured Baumarkt: "+mostCommon(baumarktList));
+            for(Integer i:baumarktList)
+            {
+                for(Produkt p:Search.searchlist.getProdukte())
+                {
 
+                    if(p.getBaumarkt()==i)
+                    {
+                        currentBmkt = i;
+                        count++;
+                        sum+=p.getPreis();
+                        System.out.println("#####  Loop run:" + i + "   :"+p.getBezeichnung());
+                    }
+                }
+                if(tempc<count)
+                {
+                        tempc = count;
+                        tempsum = sum;
+                        bestBmkt = currentBmkt;
+                }
+                if(tempc==count)
+                {
+                    if(tempsum>sum)
+                    {
+                        tempc = count;
+                        tempsum = sum;
+                        bestBmkt = currentBmkt;
+                    }
+                }
+
+                count = 0;
+                sum=0;
+            }
 
             // Create and execute a SELECT SQL statement.
-            /*String selectSql = "SELECT * FROM tbl_Produkte where Bezeichnung like '" + search + "%'";
+            System.out.println("#####   Bester Baumarkt: "+bestBmkt);
+            String selectSql = "SELECT Name FROM tbl_Baumaerkte where BaumID = "+bestBmkt;
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSql);
 
             while (resultSet.next()) {
 
-                solution = resultSet.getString(0);
+                solution = resultSet.getString("Name"); // + " " + resultSet.getString("FKstand");
             }
             connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
         return solution;
     }
 

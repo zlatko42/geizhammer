@@ -56,7 +56,9 @@ public class CalculationScreen extends AppCompatActivity {
     //Search.einkaufsliste.getProdukte().listToString()
         lv.setAdapter(arrayAdapter);
 
-        Search.searchlist.calculateBaumarkt();
+        String solution = Search.searchlist.calculateBaumarkt();
+
+        ed_solution.setText(solution);
 
 
 

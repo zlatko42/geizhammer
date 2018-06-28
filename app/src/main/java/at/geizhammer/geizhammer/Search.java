@@ -101,8 +101,6 @@ public class Search extends AppCompatActivity {
                     System.out.println("Searchlist: "+p.toString());
                 }
             }
-            System.out.println("---Einkaufsliste IN: ------------- "+einkaufsliste.produkte.getProduktAt(0).toString());
-
 
         }
 

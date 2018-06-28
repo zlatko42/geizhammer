@@ -47,7 +47,7 @@ public class Register extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();
 
-            q.createUserinDB(new Benutzer((int) (Math.random() * 100), "Testhansi", "Nachname", usernameT, 1));
+            q.createUserinDB(new Benutzer((int) (Math.random() * 100), "Testhansi", "Nachname", usernameT, 1, passwordT));
 
             Intent intent = new Intent(this, Start.class);
             startActivity(intent);

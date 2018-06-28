@@ -6,13 +6,14 @@ public class Benutzer {
             "jdbc:sqlserver://geizhammer.database.windows.net:1433;database=geizhammerDB;user=Edmin@geizhammer;password=SQL16db_2018_req;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 
 
-    public Benutzer(int benID, String vorname, String nachname, String email, int FKstand) {
+    public Benutzer(int benID, String vorname, String nachname, String email, int FKstand, String password) {
         super();
         this.benID = benID;
         this.vorname = vorname;
         this.nachname = nachname;
         this.email = email;
         this.FKstand = FKstand;
+        this.password = password;
     }
 
     private int benID;

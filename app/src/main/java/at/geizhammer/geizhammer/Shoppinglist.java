@@ -106,13 +106,7 @@ public class Shoppinglist extends AppCompatActivity {
     // method for bt_saveScreen
     public void savescreen(final View v) {
 
-        System.out.println("--------- TODO -----------");
-       // Toast.makeText(this, "No Connection - Server Maintenance ", Toast.LENGTH_LONG).show();
-
-        tackeAndSaveScreenShot(this);
-
-
-
+               tackeAndSaveScreenShot(this);
 
     }
 

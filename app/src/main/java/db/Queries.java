@@ -70,11 +70,14 @@ public class Queries {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection(url);
             // Create and execute a SELECT SQL statement.
-            String sql = "insert into tbl_Benutzer (BenID, Vorname, Nachname, Email, FKstand) values ('" + b.getBenID() + "', '" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
+            String sql = "insert into tbl_Benutzer (Vorname, Nachname, Email, FKstand, Passwort) values ('" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "', '" + b.getPassword()+"')";
             //String sql = "insert into tbl_Benutzer (Vorname, Nachname, Email, FKstand) values ('" + b.getVorname() + "', '" + b.getNachname() + "', '" + b.getEmail() + "', '" + b.getFKstand() + "')";
             Statement statement = connection.createStatement();
             if (statement.executeUpdate(sql) > 0) {
                 System.out.println("User created!");
+            }
+            else{
+                System.out.println("### Benutzername bereits vergeben ###");
             }
             connection.close();
         } catch (Exception e) {
@@ -99,7 +102,8 @@ public class Queries {
                 String nachname = resultSet.getString("Nachname");
                 String email = resultSet.getString("Email");
                 int fkstand = Integer.parseInt(resultSet.getString("FKstand"));
-                b = new Benutzer(id, vorname, nachname, email, fkstand);
+                String password = resultSet.getString("Passwort");
+                b = new Benutzer(id, vorname, nachname, email, fkstand, password);
             }
             connection.close();
         } catch (Exception e) {

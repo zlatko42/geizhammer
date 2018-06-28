@@ -41,7 +41,7 @@ public class Delete extends AppCompatActivity {
         Queries q = new Queries();
         Benutzer b = q.getUserByEmail(usernameT);
 
-        if (b != null && passwordT.equals(password2T)) {
+        if (b != null && passwordT.equals(password2T) && b.getPassword().equals(passwordT)) {
             String text = "Account removed: " + usernameT;
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);

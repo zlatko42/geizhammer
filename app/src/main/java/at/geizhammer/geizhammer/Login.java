@@ -32,17 +32,19 @@ public class Login extends AppCompatActivity {
     public void login(View v) {
 
         ed_username = (EditText) findViewById(R.id.username);
-        // ed_password = (EditText) findViewById(R.id.password);
+        ed_password = (EditText) findViewById(R.id.password);
 
         final String usernameT = ed_username.getText().toString();
+        final String passwordT = ed_password.getText().toString();
         System.out.println(" -------- Username Field: " + usernameT);
+        System.out.println(" -------- Password Field: " + passwordT);
 
         Benutzer b;
 
         Queries q = new Queries();
         b = q.getUserByEmail(usernameT);
 
-        if (b != null) {
+        if (b != null && b.getPassword().equals(passwordT)) {
             String text = "Login successfull: " + b.getEmail();
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
