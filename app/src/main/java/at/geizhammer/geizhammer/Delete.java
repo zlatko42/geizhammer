@@ -55,11 +55,11 @@ public class Delete extends AppCompatActivity {
                 startActivity(intent);
 
             } else {
-                Toast.makeText(getApplicationContext(), "User not found!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_LONG).show();
             }
         } else {
 
-            String text = "Removal failed, check Passwords";
+            String text = "User not found!";
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();

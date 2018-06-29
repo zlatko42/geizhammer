@@ -60,6 +60,10 @@ public class Login extends AppCompatActivity {
 
 
             }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Wrong password!", Toast.LENGTH_LONG);
+            }
         } else {
 
             String text = "Login failed!!";

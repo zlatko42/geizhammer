@@ -129,5 +129,11 @@ public class CalculationScreen extends AppCompatActivity {
     }
 
 
+    public void writeListToTxtFile()
+    {
+        //Todo
+    }
+
+
 
 }
