@@ -10,7 +10,8 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="343dp"
-        android:layout_height="194dp"
+        android:layout_height="372dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -19,6 +20,7 @@
         android:choiceMode="singleChoice"
         android:listSelector="#666666"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ed_solution"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +40,14 @@
 
     <EditText
         android:id="@+id/ed_solution"
-        android:layout_width="wrap_content"
+        android:layout_width="309dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:editable="false"
         android:ems="10"
         android:inputType="none"
         android:text="empty"
-        app:layout_constraintTop_toBottomOf="@+id/listView"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/bt_saveScreen"
+        tools:layout_editor_absoluteX="33dp" />
 
 </android.support.constraint.ConstraintLayout>

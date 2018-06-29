@@ -55,7 +55,25 @@ public class ProdukteList {
 
     }
 
-    public ArrayList listToString() {
+    public void removeProduktByBez(String bez) {
+        for (int i = 0; i < produkte.size(); i++) {
+            if (produkte.get(i).getBezeichnung().equals(bez)) {
+                produkte.remove(i);
+            }
+        }
+
+    }
+
+    public Produkt getFirstProduktfromListbyBez(String bez) {
+        for (Produkt p : produkte) {
+            if (p.getBezeichnung().equals(bez)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList listToStringUnique() {
 
         ArrayList<String> list = new ArrayList<>();
 
@@ -64,6 +82,16 @@ public class ProdukteList {
         Set<String> diffList = new HashSet<>(list);
         list.clear();
         list.addAll(diffList);
+
+        return list;
+    }
+
+    public ArrayList listToString() {
+        ArrayList<String> list = new ArrayList<>();
+
+        for (Produkt p : produkte) {
+            list.add(p.toString());
+        }
 
         return list;
     }

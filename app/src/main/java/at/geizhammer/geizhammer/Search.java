@@ -12,7 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.sql.Date;
+import java.util.ArrayList;
 
 import model.Einkaufsliste;
 import model.Produkt;
@@ -26,6 +26,7 @@ public class Search extends AppCompatActivity {
     public static Einkaufsliste einkaufsliste = new Einkaufsliste(1);
     public static ProdukteList searchlist = new ProdukteList();
     ProdukteList list = new ProdukteList();
+    ArrayList output = new ArrayList();
 
 
 
@@ -37,7 +38,6 @@ public class Search extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         ac_text = (AutoCompleteTextView) findViewById(R.id.ac_text);
-        lv = (ListView) findViewById(R.id.listView);
 
 
     }
@@ -46,31 +46,39 @@ public class Search extends AppCompatActivity {
     // method for bt_search
     public void start_search(final View v) {
 
+        lv = (ListView) findViewById(R.id.listView);
 
         String input = ac_text.getText().toString();
         System.out.println("  ---  Textinput: "+input);
 
-        if(input.length()>2) {
+
+        if (input.length() > 2) {
             list.clear();
             list.getProdukteByName(input);
 
+            output = list.listToStringUnique();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1, list.listToString());
-
-        lv.setAdapter(arrayAdapter);
-        registerForContextMenu(lv);
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    this,
+                    android.R.layout.simple_list_item_1, output);
 
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
-                view.setSelected(true);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
+                    view.setSelected(true);
+                    //currentP = list.getProduktAt(position);
+                    currentP = list.getFirstProduktfromListbyBez(output.get(position).toString());
 
-                currentP = list.getProduktAt(position);
-            }
-        });}
+                    registerForContextMenu(lv);
+                }
+
+            });
+
+            lv.setAdapter(arrayAdapter);
+
+
+        }
         else{
             Toast.makeText(this, "Suchbegriff zu kurz!", Toast.LENGTH_LONG).show();
         }
@@ -81,6 +89,7 @@ public class Search extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         menu.add("Artikel auf die Einkaufsliste setzen");
+
     }
 
     @Override
@@ -93,6 +102,11 @@ public class Search extends AppCompatActivity {
 
             einkaufsliste.getProdukte().add(currentP);
 
+            lv.setAdapter(null);
+            lv = (ListView) findViewById(R.id.listView);
+            unregisterForContextMenu(lv);
+
+
             for(Produkt p:list.getProdukte())
             {
                 if(currentP.getBezeichnung().equals(p.getBezeichnung()))
@@ -103,6 +117,7 @@ public class Search extends AppCompatActivity {
             }
 
         }
+
 
         return true;
     }
