@@ -99,13 +99,9 @@ public class Search extends AppCompatActivity {
         if (item.getTitle() == "Artikel auf die Einkaufsliste setzen") {
             Toast.makeText(this, "Added: " + currentP.toString(), Toast.LENGTH_LONG).show();
 
-
             einkaufsliste.getProdukte().add(currentP);
 
-            lv.setAdapter(null);
-            lv = (ListView) findViewById(R.id.listView);
             unregisterForContextMenu(lv);
-
 
             for(Produkt p:list.getProdukte())
             {
