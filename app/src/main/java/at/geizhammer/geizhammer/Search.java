@@ -56,6 +56,9 @@ public class Search extends AppCompatActivity {
             list.clear();
             list.getProdukteByName(input);
 
+            if (list.listSize() < 1)
+                Toast.makeText(this, "Keine Treffer!", Toast.LENGTH_LONG).show();
+
             output = list.listToStringUnique();
 
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(

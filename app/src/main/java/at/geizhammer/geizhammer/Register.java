@@ -41,21 +41,26 @@ public class Register extends AppCompatActivity {
         Queries q = new Queries();
         Benutzer b = q.getUserByEmail(usernameT);
 
-        if (b == null && passwordT.equals(password2T)) {
-            String text = "Register successfull: " + usernameT;
+        if (b == null) {
 
-            Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
-            toast.show();
+            if (passwordT.equals(password2T)) {
+                String text = "Register successfull: " + usernameT;
 
-            q.createUserinDB(new Benutzer((int) (Math.random() * 100), "Testhansi", "Nachname", usernameT, 1, passwordT));
+                Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+                toast.show();
 
-            Intent intent = new Intent(this, Start.class);
-            startActivity(intent);
+                q.createUserinDB(new Benutzer((int) (Math.random() * 100), "Testhansi", "Nachname", usernameT, 1, passwordT));
 
+                Intent intent = new Intent(this, Start.class);
+                startActivity(intent);
 
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_LONG);
+                toast.show();
+            }
         } else {
 
-            String text = "Register failed, check Passwords";
+            String text = "Register failed: Username already in use!";
 
             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
             toast.show();

@@ -44,20 +44,22 @@ public class Login extends AppCompatActivity {
         Queries q = new Queries();
         b = q.getUserByEmail(usernameT);
 
-        if (b != null && b.getPassword().equals(passwordT)) {
-            String text = "Login successfull: " + b.getEmail();
+        if (b != null) {
 
-            Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
-            toast.show();
+            if (b.getPassword().equals(passwordT)) {
+                String text = "Login successfull: " + b.getEmail();
 
-            loggedIn = b.getBenID();
-            System.out.println(loggedIn);
+                Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+                toast.show();
 
-            Intent intent = new Intent(this, Main.class);
-            startActivity(intent);
+                loggedIn = b.getBenID();
+                System.out.println(loggedIn);
+
+                Intent intent = new Intent(this, Main.class);
+                startActivity(intent);
 
 
-
+            }
         } else {
 
             String text = "Login failed!!";

@@ -41,6 +41,10 @@ public class ProdukteList {
         return produkte.get(index);
     }
 
+    public int listSize() {
+        return produkte.size();
+    }
+
     public void removeProduktAt(int index) {
         produkte.remove(index);
     }

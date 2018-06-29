@@ -78,11 +78,16 @@ public class Queries {
             }
             else{
                 System.out.println("### Benutzername bereits vergeben ###");
+                //return false;
             }
             connection.close();
+            //return true;
+
         } catch (Exception e) {
             e.printStackTrace();
+            //return false;
         }
+
     }
 
     public Benutzer getUserByEmail(String mail) {

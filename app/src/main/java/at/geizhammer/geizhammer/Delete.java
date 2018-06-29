@@ -41,18 +41,22 @@ public class Delete extends AppCompatActivity {
         Queries q = new Queries();
         Benutzer b = q.getUserByEmail(usernameT);
 
-        if (b != null && passwordT.equals(password2T) && b.getPassword().equals(passwordT)) {
-            String text = "Account removed: " + usernameT;
+        if (b != null) {
 
-            Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
-            toast.show();
+            if (passwordT.equals(password2T) && b.getPassword().equals(passwordT)) {
+                String text = "Account removed: " + usernameT;
 
-            q.deleteUserinDB(b);
+                Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+                toast.show();
 
-            Intent intent = new Intent(this, Start.class);
-            startActivity(intent);
+                q.deleteUserinDB(b);
 
+                Intent intent = new Intent(this, Start.class);
+                startActivity(intent);
 
+            } else {
+                Toast.makeText(getApplicationContext(), "User not found!", Toast.LENGTH_LONG).show();
+            }
         } else {
 
             String text = "Removal failed, check Passwords";
