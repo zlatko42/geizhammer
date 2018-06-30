@@ -49,7 +49,8 @@ public class Delete extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                 toast.show();
 
-                q.deleteUserinDB(b);
+                //q.deleteUserinDB(b);
+                q.setStatusDeleted(b);
 
                 Intent intent = new Intent(this, Start.class);
                 startActivity(intent);

@@ -61,6 +61,27 @@ public class Queries {
         }
     }
 
+    public void setStatusDeleted(Benutzer b) {
+        Connection connection = null;
+
+        try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            connection = DriverManager.getConnection(url);
+            // Create and execute a SELECT SQL statement.
+            String sql = "UPDATE tbl_Benutzer SET Vorname='~deleted', Nachname='~deleted' WHERE BenID=" + b.getBenID();
+            Statement statement = connection.createStatement();
+            if (statement.executeUpdate(sql) > 0) {
+                System.out.println("User set to be deleted!");
+            } else {
+                System.out.println("Failed");
+            }
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void createUserinDB(Benutzer b) {
 

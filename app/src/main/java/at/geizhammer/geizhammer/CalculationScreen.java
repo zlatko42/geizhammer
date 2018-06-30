@@ -34,6 +34,7 @@ public class CalculationScreen extends AppCompatActivity {
     Produkt currentP;
     int index = 0;
     ArrayAdapter<String> arrayAdapter;
+    String solution;
 
 
     @Override
@@ -53,7 +54,7 @@ public class CalculationScreen extends AppCompatActivity {
     //Search.einkaufsliste.getProdukte().listToString()
         lv.setAdapter(arrayAdapter);
 
-        String solution = Search.searchlist.calculateBaumarkt();
+        solution = Search.searchlist.calculateBaumarkt();
 
         ed_solution.setText(solution);
 
@@ -68,7 +69,8 @@ public class CalculationScreen extends AppCompatActivity {
         //System.out.println("--------- TODO -----------");
        // Toast.makeText(this, "No Connection - Server Maintenance ", Toast.LENGTH_LONG).show();
 
-        tackeAndSaveScreenShot(this);
+        // tackeAndSaveScreenShot(this);
+        writeListToTxtFile();
 
     }
 
@@ -128,7 +130,40 @@ public class CalculationScreen extends AppCompatActivity {
 
     public void writeListToTxtFile()
     {
-        //Todo
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            ActivityCompat.requestPermissions(this, permissions, 110);
+        }
+
+        try {
+            String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+            OutputStream fOut = null;
+
+            String name = "GEIZHAMMER";
+            File file = new File(path, name + ".txt");
+            fOut = new FileOutputStream(file);
+
+            fOut.write(" +++ GEIZHAMMER SHOPPING LIST +++ \n".getBytes());
+            for (Object o : Search.einkaufsliste.listToString()) {
+                fOut.write((o.toString() + "\n").getBytes());
+            }
+            fOut.write(" \n".getBytes());
+
+            fOut.write(("Günstigster Baumarkt: " + solution).getBytes());
+            fOut.flush();
+            fOut.close();
+
+            Toast.makeText(getBaseContext(), "File saved in: " + path,
+                    Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

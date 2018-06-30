@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         Queries q = new Queries();
         b = q.getUserByEmail(usernameT);
 
-        if (b != null) {
+        if (b != null && !b.getVorname().equals("~deleted")) {
 
             if (b.getPassword().equals(passwordT)) {
                 String text = "Login successfull: " + b.getEmail();
