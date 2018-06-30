@@ -11,10 +11,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -68,7 +65,7 @@ public class CalculationScreen extends AppCompatActivity {
     // method for bt_saveScreen
     public void savescreen(final View v) {
 
-        System.out.println("--------- TODO -----------");
+        //System.out.println("--------- TODO -----------");
        // Toast.makeText(this, "No Connection - Server Maintenance ", Toast.LENGTH_LONG).show();
 
         tackeAndSaveScreenShot(this);
