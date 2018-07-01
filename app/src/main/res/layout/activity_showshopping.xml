@@ -47,7 +47,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:onClick="savescreen"
-        android:text="Liste für später speichern"
+        android:text="Liste als Screenshot speichern"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
